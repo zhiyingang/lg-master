@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zyg</groupId>
-    <artifactId>zg-parent</artifactId>
+    <artifactId>zg-master</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>zg-parent</name>
+    <name>zg-master</name>
     <packaging>pom</packaging>
 
 
