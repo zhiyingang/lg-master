@@ -1,6 +1,6 @@
 package com.zyg.guns.core.node;
 
-import com.stylefeng.guns.core.constant.IsMenu;
+import com.zyg.guns.core.constant.IsMenu;
 
 import java.util.ArrayList;
 import java.util.Collections;
