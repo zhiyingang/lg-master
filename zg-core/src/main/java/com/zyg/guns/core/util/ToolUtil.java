@@ -15,7 +15,7 @@
  */
 package com.zyg.guns.core.util;
 
-import com.stylefeng.guns.core.support.StrKit;
+import com.zyg.guns.core.support.StrKit;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -1,7 +1,7 @@
 package com.zyg.guns.core.util;
 
-import com.stylefeng.guns.core.exception.GunsException;
-import com.stylefeng.guns.core.exception.GunsExceptionEnum;
+import com.zyg.guns.core.exception.GunsException;
+import com.zyg.guns.core.exception.GunsExceptionEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

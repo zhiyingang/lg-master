@@ -15,7 +15,7 @@
  */
 package com.zyg.guns.core.support.exception;
 
-import com.stylefeng.guns.core.support.StrKit;
+import com.zyg.guns.core.support.StrKit;
 
 /**
  * 工具类初始化异常
