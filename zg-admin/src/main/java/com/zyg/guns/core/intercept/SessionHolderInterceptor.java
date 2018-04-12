@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SessionHolderInterceptor extends BaseController {
 
-    @Pointcut("execution(* com.stylefeng.guns.*..controller.*.*(..))")
+    @Pointcut("execution(* com.zyg.guns.*..controller.*.*(..))")
     public void cutService() {
     }
 
