@@ -18,6 +18,7 @@
  */
 package com.zyg.guns.core.intercept;
 
+import com.zyg.guns.core.shiro.ShiroKit;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
@@ -90,15 +91,14 @@ public class GunsUserFilter extends AccessControlFilter {
                 /**
                  * 从别的页面跳转过来的
                  */
-                return false;
-//                if (ShiroKit.getSession().getAttribute("sessionFlag") == null) {
-//                    httpServletRequest.setAttribute("tips", "session超时");
-//                    httpServletRequest.getRequestDispatcher("/login.html").forward(request, response);
-//                    return false;
-//                } else {
-//                    saveRequestAndRedirectToLogin(request, response);
-//                    return false;
-//                }
+                if (ShiroKit.getSession().getAttribute("sessionFlag") == null) {
+                    httpServletRequest.setAttribute("tips", "session超时");
+                    httpServletRequest.getRequestDispatcher("/login.html").forward(request, response);
+                    return false;
+                } else {
+                    saveRequestAndRedirectToLogin(request, response);
+                    return false;
+                }
             }
         }
     }

@@ -15,6 +15,7 @@
     <modules>
         <module>zg-core</module>
         <module>zg-admin</module>
+        <module>zg-front</module>
     </modules>
 
 
