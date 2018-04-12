@@ -284,7 +284,7 @@ public class ImgQrTool {
                     .setQrContent("http://www.baidu.com?a=" + "123")
                     .setQrHeight(300)
                     .setQrWidth(300)
-                    .setQrIconFilePath("D:\\11\\1.png")
+                    .setQrIconFilePath("D:\\11\\1.jpg")
                     .setTopWrodHeight(100)
                     .setWordContent("test" + 1)
                     .setWordSize(18).build();

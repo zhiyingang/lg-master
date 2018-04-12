@@ -52,13 +52,6 @@
     <dependencyManagement>
         <dependencies>
 
-
-            <dependency>
-                <groupId>com.zyg</groupId>
-                <artifactId>zg-core</artifactId>
-                <version>${zg.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
