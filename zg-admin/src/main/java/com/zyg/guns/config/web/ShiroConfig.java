@@ -2,6 +2,7 @@ package com.zyg.guns.config.web;
 
 import com.zyg.guns.config.properties.GunsProperties;
 import com.zyg.guns.core.intercept.GunsUserFilter;
+import com.zyg.guns.core.shiro.ShiroDbRealm;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.Base64;
@@ -42,7 +43,7 @@ public class ShiroConfig {
     @Bean
     public DefaultWebSecurityManager securityManager(CookieRememberMeManager rememberMeManager, CacheManager cacheShiroManager, SessionManager sessionManager) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-//        securityManager.setRealm(this.shiroDbRealm());
+        securityManager.setRealm(this.shiroDbRealm());
         securityManager.setCacheManager(cacheShiroManager);
         securityManager.setRememberMeManager(rememberMeManager);
         securityManager.setSessionManager(sessionManager);
@@ -90,10 +91,10 @@ public class ShiroConfig {
     /**
      * 项目自定义的Realm
      */
-//    @Bean
-//    public ShiroDbRealm shiroDbRealm() {
-//        return new ShiroDbRealm();
-//    }
+    @Bean
+    public ShiroDbRealm shiroDbRealm() {
+        return new ShiroDbRealm();
+    }
 
     /**
      * rememberMe管理器, cipherKey生成见{@code Base64Test.java}
