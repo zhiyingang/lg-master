@@ -88,6 +88,9 @@ redisson:
 mq:
   namesrvaddr: 10.167.41.242:9876;10.167.41.243:9876
   producerGroup: producerGroup
+  consumerGroup: third-center-producerGroup
+  topicName: third-center
+
 
 ---
 
