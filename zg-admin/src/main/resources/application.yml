@@ -68,7 +68,23 @@ mybatis-plus:
     lazyLoadingEnabled: true #延时加载的开关
     multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
-
+redis:
+  host: 10.70.94.107
+  port: 6379
+  maxTotal: 8
+  maxIdl: 8
+  minIdl: 0
+  maxWaitMills: 3000
+  testOneReturn: true
+  testOneBorrow: true
+  testWhileIdl: true
+  timeBetweenEvictionRunsMillis: 1000
+  numTestsPerEvictionRun: 100
+  MinEvictableIdleTimeMillis: 500
+  database: 0
+redisson:
+  address: redis://10.70.94.107:6379
+  model: single
 ---
 
 ##########################################################

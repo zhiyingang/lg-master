@@ -1,7 +1,7 @@
 package com.zyg.guns.core.cache.redis.lock;
 
-import com.hna.eking.cache.redis.client.CacheKeyUtil;
-import com.hna.eking.cache.redis.client.RedisCache;
+import com.zyg.guns.core.cache.redis.client.CacheKeyUtil;
+import com.zyg.guns.core.cache.redis.client.RedisCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
