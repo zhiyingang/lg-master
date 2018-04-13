@@ -118,6 +118,18 @@
             <artifactId>jedis</artifactId>
             <version>${jedis.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.rocketmq</groupId>
+            <artifactId>rocketmq-all</artifactId>
+            <version>3.5.8</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>3.5.8</version>
+        </dependency>
     </dependencies>
 
 </project>
