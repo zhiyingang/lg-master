@@ -28,7 +28,9 @@ public class JwtAuthenticationFilter extends AuthenticatingFilter {
     protected AuthenticationToken createToken(ServletRequest request, ServletResponse response) throws Exception {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         // 先从Header里面获取
-        String token = httpRequest.getHeader(TOKEN);
+        Object _token = httpRequest.getSession().getAttribute(TOKEN);
+//        String token = httpRequest.getHeader(TOKEN);
+        String token = _token == null ?null:(String)_token;
         if(StringUtils.isEmpty(token)){
             // 获取不到再从Parameter中拿
             token = httpRequest.getParameter(TOKEN);

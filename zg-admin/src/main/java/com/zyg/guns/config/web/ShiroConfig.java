@@ -5,6 +5,9 @@ import com.zyg.guns.core.filter.JcaptchaValidateFilter;
 import com.zyg.guns.core.filter.JwtAuthenticationFilter;
 import com.zyg.guns.core.intercept.GunsUserFilter;
 import com.zyg.guns.core.shiro.ShiroDbRealm;
+import org.apache.shiro.authc.credential.CredentialsMatcher;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.Base64;
@@ -96,7 +99,8 @@ public class ShiroConfig {
     @Bean
     public ShiroDbRealm shiroDbRealm() {
         ShiroDbRealm realm = new ShiroDbRealm();
-        realm.setCachingEnabled(true);
+        realm.setCredentialsMatcher(credentialsMatcher());
+        realm.setCachingEnabled(false);
         return realm;
     }
 
@@ -169,7 +173,7 @@ public class ShiroConfig {
         hashMap.put("/global/sessionError", "anon");
         hashMap.put("/kaptcha", "anon");
         hashMap.put("/**", "user");
-//        hashMap.put("/**", "jwt");
+        hashMap.put("/**", "jwt");
         shiroFilter.setFilterChainDefinitionMap(hashMap);
         return shiroFilter;
     }
@@ -204,6 +208,21 @@ public class ShiroConfig {
                 new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
+    }
+
+    /**
+     * 凭证匹配器
+     * @return
+     */
+    @Bean
+    public CredentialsMatcher credentialsMatcher(){
+//        HashedCredentialsMatcher hashedCredentialsMatcher =new HashedCredentialsMatcher();
+//        hashedCredentialsMatcher.setHashAlgorithmName("MD5");
+//        hashedCredentialsMatcher.setHashIterations(1024);
+//        hashedCredentialsMatcher.setStoredCredentialsHexEncoded(true);
+//        return hashedCredentialsMatcher;
+        SimpleCredentialsMatcher simpleCredentialsMatcher = new SimpleCredentialsMatcher();
+        return simpleCredentialsMatcher;
     }
 
 }

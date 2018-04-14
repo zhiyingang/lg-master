@@ -17,7 +17,10 @@ package com.zyg.guns.core.shiro;
 
 import com.zyg.guns.core.common.constant.Const;
 import com.zyg.guns.core.common.constant.factory.ConstantFactory;
+import com.zyg.guns.core.shiro.factory.IShiro;
+import com.zyg.guns.core.shiro.factory.ShiroFactroy;
 import com.zyg.guns.core.util.ToolUtil;
+import com.zyg.guns.modular.system.model.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -85,7 +88,11 @@ public class ShiroKit {
         if (isGuest()) {
             return null;
         } else {
-            return (ShiroUser) getSubject().getPrincipals().getPrimaryPrincipal();
+            String username = (String) getSubject().getPrincipals().getPrimaryPrincipal();
+            IShiro shiroFactory = ShiroFactroy.me();
+            User user = shiroFactory.user(username);
+            ShiroUser shiroUser = shiroFactory.shiroUser(user);
+            return shiroUser;
         }
     }
 

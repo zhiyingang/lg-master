@@ -73,12 +73,11 @@ public class TokenUtil {
     }
 
     private String generateToken(Map<String, Object> claims) {
-//        return Jwts.builder()
-//                .setClaims(claims)
-//                .setExpiration(generateExpirationDate())
-//                .signWith(SignatureAlgorithm.HS512, this.secret)
-//                .compact();
-        return "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUyMzY5NjE3NDgxNywiZXhwIjoxNTIzNzgyNTc0fQ.aATzyhzqH8FkCbx8wZv-uquiBbrOndKAfFSO00OwQkOZEr1EUZJPoEo6V0BAwsHxr68zr2CG_QwXyJZkyz95Uw";
+        return Jwts.builder()
+                .setClaims(claims)
+                .setExpiration(generateExpirationDate())
+                .signWith(SignatureAlgorithm.HS512, this.secret)
+                .compact();
     }
 
     /**
@@ -119,7 +118,7 @@ public class TokenUtil {
         } catch (Exception e) {
             username = null;
         }
-        return "admin";
+        return username;
     }
 
     /**

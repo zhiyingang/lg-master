@@ -16,6 +16,9 @@
 package com.zyg.guns.core.beetl;
 
 import com.zyg.guns.core.shiro.ShiroUser;
+import com.zyg.guns.core.shiro.factory.IShiro;
+import com.zyg.guns.core.shiro.factory.ShiroFactroy;
+import com.zyg.guns.modular.system.model.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.beetl.core.GroupTemplate;
@@ -41,7 +44,11 @@ public class ShiroExt {
         if (isGuest()) {
             return null;
         } else {
-            return (ShiroUser) getSubject().getPrincipals().getPrimaryPrincipal();
+            String username = (String) getSubject().getPrincipals().getPrimaryPrincipal();
+            IShiro shiroFactory = ShiroFactroy.me();
+            User user = shiroFactory.user(username);
+            ShiroUser shiroUser = shiroFactory.shiroUser(user);
+            return shiroUser;
         }
     }
 
