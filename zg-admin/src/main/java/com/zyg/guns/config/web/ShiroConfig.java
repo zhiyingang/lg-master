@@ -1,6 +1,8 @@
 package com.zyg.guns.config.web;
 
 import com.zyg.guns.config.properties.GunsProperties;
+import com.zyg.guns.core.filter.JcaptchaValidateFilter;
+import com.zyg.guns.core.filter.JwtAuthenticationFilter;
 import com.zyg.guns.core.intercept.GunsUserFilter;
 import com.zyg.guns.core.shiro.ShiroDbRealm;
 import org.apache.shiro.cache.CacheManager;
@@ -93,7 +95,9 @@ public class ShiroConfig {
      */
     @Bean
     public ShiroDbRealm shiroDbRealm() {
-        return new ShiroDbRealm();
+        ShiroDbRealm realm = new ShiroDbRealm();
+        realm.setCachingEnabled(true);
+        return realm;
     }
 
     /**
@@ -143,6 +147,8 @@ public class ShiroConfig {
          */
         HashMap<String, Filter> myFilters = new HashMap<>();
         myFilters.put("user", new GunsUserFilter());
+        myFilters.put("jwt",new JwtAuthenticationFilter());
+        myFilters.put("jcaptchaValidate",new JcaptchaValidateFilter());
         shiroFilter.setFilters(myFilters);
 
         /**
@@ -163,6 +169,7 @@ public class ShiroConfig {
         hashMap.put("/global/sessionError", "anon");
         hashMap.put("/kaptcha", "anon");
         hashMap.put("/**", "user");
+//        hashMap.put("/**", "jwt");
         shiroFilter.setFilterChainDefinitionMap(hashMap);
         return shiroFilter;
     }

@@ -5,6 +5,8 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import redis.clients.jedis.JedisPool;
@@ -58,6 +60,22 @@ public class RedisConfig {
 	public JedisPool getJedisPool(JedisPoolConfig jedisPoolConfig) {
 		JedisPool pool = new JedisPool(jedisPoolConfig, host, port, 2000, null, database);
 		return pool;
+	}
+
+	@Bean
+	JedisConnectionFactory jedisConnectionFactory() {
+		JedisConnectionFactory connectionFactory = new JedisConnectionFactory();
+		connectionFactory.setHostName(host);
+		connectionFactory.setPassword(null);
+		connectionFactory.setPort(port);
+		connectionFactory.setDatabase(database);
+		return connectionFactory;
+	}
+	@Bean("redisTemplate")
+	public RedisTemplate<String, Object> redisTemplate() {
+		RedisTemplate redisTemplate = new RedisTemplate();
+		redisTemplate.setConnectionFactory(jedisConnectionFactory());
+		return redisTemplate;
 	}
 	
 	

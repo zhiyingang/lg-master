@@ -41,6 +41,7 @@ public class RedisCache implements CacheTemplate {
         return null;
     }
 
+
     @Override
     public <T> List<T> getList(String key, Class<T> clazz) {
         Jedis jedis = jedisPool.getResource();

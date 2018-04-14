@@ -11,10 +11,15 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.authc.pam.UnsupportedTokenException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import java.util.HashSet;
 import java.util.List;
@@ -22,12 +27,41 @@ import java.util.Set;
 
 public class ShiroDbRealm extends AuthorizingRealm {
 
+    @Autowired
+    private TokenUtil tokenUtil;
+    @Autowired
+    private RedisTemplate<String,Object> redisTemplate;
+
+//    @Override
+//    public boolean supports(AuthenticationToken token) {
+//        //表示此Realm只支持JwtToken类型
+//        return token instanceof JwtToken;
+//    }
     /**
      * 登录认证
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken)
             throws AuthenticationException {
+//        JwtToken jwtToken = (JwtToken) authcToken;
+//        // 获取token
+//        String token = jwtToken.getToken();
+//        String username = tokenUtil.getUsernameFromToken(token);
+//        IShiro shiroFactory = ShiroFactroy.me();
+//        User user = shiroFactory.user(username);
+        // 从token中获取用户名
+
+//        String credentials = user.getPassword();
+
+        // 密码加盐处理
+//        String source = user.getSalt();
+//        ByteSource credentialsSalt = new Md5Hash(source);
+
+//        ShiroUser shiroUser = shiroFactory.shiroUser(user);
+//        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(
+//                username,
+//                token,
+//                getName());
         IShiro shiroFactory = ShiroFactroy.me();
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
         User user = shiroFactory.user(token.getUsername());

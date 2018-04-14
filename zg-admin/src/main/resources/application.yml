@@ -28,7 +28,7 @@ beetl:
 ###################  spring配置  ###################
 spring:
   redis:
-    host: localhost
+    host: 10.70.94.107
     port: 6379
     password:
   profiles:
@@ -124,5 +124,13 @@ logging:
   level.com.zyg: debug
   path: logs/
   file: guns.log
+jwt:
+#  header: Authorization
+  token:
+    secret: mySecret
+#    7天
+#    expiration: 604800
 
+#    一天
+    expiration: 86400
 

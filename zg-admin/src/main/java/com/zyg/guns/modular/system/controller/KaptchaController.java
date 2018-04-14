@@ -1,11 +1,15 @@
 package com.zyg.guns.modular.system.controller;
 
-import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
+import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.google.common.collect.ImmutableMap;
 import com.zyg.guns.config.properties.GunsProperties;
 import com.zyg.guns.core.util.FileUtil;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,7 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 验证码生成
@@ -31,7 +39,29 @@ public class KaptchaController {
     private GunsProperties gunsProperties;
 
     @Autowired
+    private DefaultKaptcha captchaProducer;
+
+    @Autowired
     private Producer producer;
+
+    @Autowired
+    private RedisTemplate<String,Object> redisTemplate;
+
+
+    @GetMapping(value="/captcha")
+    public Map<String,String> captcha(){
+        try(ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+            String capText = captchaProducer.createText();
+            String uuid = UUID.randomUUID().toString();
+            redisTemplate.boundValueOps(uuid).set(capText,60, TimeUnit.SECONDS);
+            BufferedImage bi = captchaProducer.createImage(capText);
+            ImageIO.write(bi, "png", baos);
+            String imgBase64 = Base64.encodeBase64String(baos.toByteArray());
+            return ImmutableMap.of(uuid, "data:image/jpeg;base64," + imgBase64);
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage(),e);
+        }
+    }
 
     /**
      * 生成验证码
@@ -58,7 +88,9 @@ public class KaptchaController {
         String capText = producer.createText();
 
         // store the text in the session
-        session.setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
+//        session.setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
+        String uuid = UUID.randomUUID().toString();
+        redisTemplate.boundValueOps(uuid).set(capText, 60, TimeUnit.SECONDS);
 
         // create the image with the text
         BufferedImage bi = producer.createImage(capText);
