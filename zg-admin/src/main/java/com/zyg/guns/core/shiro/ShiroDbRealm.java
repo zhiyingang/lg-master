@@ -3,6 +3,7 @@ package com.zyg.guns.core.shiro;
 import com.zyg.guns.core.shiro.factory.IShiro;
 import com.zyg.guns.core.shiro.factory.ShiroFactroy;
 import com.zyg.guns.core.util.ToolUtil;
+import com.zyg.guns.core.utils.StringUtil;
 import com.zyg.guns.modular.system.model.User;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -42,6 +43,9 @@ public class ShiroDbRealm extends AuthorizingRealm {
         JwtToken jwtToken = (JwtToken) authcToken;
         // 获取token
         String token = jwtToken.getToken();
+        if(StringUtil.isEmpty(token)){
+            throw new AuthenticationException();
+        }
         String username = tokenUtil.getUsernameFromToken(token);
 //        IShiro shiroFactory = ShiroFactroy.me();
 //        User user = shiroFactory.user(username);
