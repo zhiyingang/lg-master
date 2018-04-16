@@ -3,6 +3,7 @@ package com.zyg.guns.core.es;
 import com.google.common.collect.Lists;
 import com.zyg.guns.core.utils.StringUtil;
 import org.apache.http.HttpHost;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Value;
