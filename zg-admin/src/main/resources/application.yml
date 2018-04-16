@@ -92,6 +92,11 @@ mq:
   topicName: third-center
 
 
+data:
+  elasticsearch:
+    cluster-name: zg-es
+    cluster-rest-nodes: 127.0.0.1:9500,127.0.0.1:9500
+
 ---
 
 ##########################################################
