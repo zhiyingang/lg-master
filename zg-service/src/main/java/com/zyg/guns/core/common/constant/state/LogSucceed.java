@@ -9,7 +9,7 @@ package com.zyg.guns.core.common.constant.state;
 public enum LogSucceed {
 
     SUCCESS("成功"),
-    FAIL("失败");
+    FAIL("失败"), ;
 
     String message;
 

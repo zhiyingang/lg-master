@@ -105,7 +105,7 @@ data:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://localhost:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://10.70.94.107:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
     password: root
     db-name: order2
@@ -115,12 +115,12 @@ spring:
 guns:
   flowable:
     datasource:
-      url: jdbc:mysql://localhost:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      url: jdbc:mysql://10.70.94.107:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
       username: root
       password: root
   muti-datasource:
     default-dataSource-name: dataSourceGuns #默认的数据源名称
-    url: jdbc:mysql://localhost:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://10.70.94.107:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
     password: root
 
@@ -152,6 +152,16 @@ xxl:
       logpath: /data/applogs/xxl-job/jobhandler
       logretentiondays: -1
     accessToken:
+
+### 支付宝后台回调
+#项目地址
+#server.context.url = http://127.0.0.1:8080/
+##支付宝后台回调
+#alipay.notify.url=https://blog.52itstyle.com/alipay/pay
+##微信后台回调
+#wexinpay.notify.url=https://blog.52itstyle.com/weixin/pay
+##银联后台回调
+#unionpay.notify.url=https://blog.52itstyle.com/union/pay
 
 
 
