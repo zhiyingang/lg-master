@@ -1,4 +1,4 @@
-package com.zyg.guns.modular.pay;
+package com.zyg.guns.modular.pay.weinxin;
 
 import com.zyg.guns.modular.pay.common.constants.Constants;
 import com.zyg.guns.modular.pay.common.model.Product;

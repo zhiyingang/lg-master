@@ -1,4 +1,5 @@
 package com.zyg.guns;
+import com.alipay.demo.trade.config.Configs;
 import com.zyg.guns.modular.pay.weixinpay.util.ConfigUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,7 @@ public class GunsApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GunsApplication.class, args);
+        Configs.init("pay/zfbinfo.properties");//支付宝
         ConfigUtil.init("pay/wxinfo.properties");//微信
         logger.info("GunsApplication is success!");
     }
