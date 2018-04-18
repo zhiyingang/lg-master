@@ -17,6 +17,7 @@
         <module>zg-admin</module>
         <module>zg-front</module>
         <module>zg-service</module>
+        <module>zg-rest</module>
     </modules>
 
 
