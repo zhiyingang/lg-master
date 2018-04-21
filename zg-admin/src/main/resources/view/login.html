@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ZG - 登录</title>
+    <title>统一登录页面</title>
 
     <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
     <link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
     <link href="${ctxPath}/static/css/animate.css" rel="stylesheet">
     <link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link rel="stylesheet" href="${ctxPath}/static/css/login.css">
     <script>if (window.top !== window.self) {
         window.top.location = window.location;
     }</script>
@@ -18,43 +19,73 @@
     <script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
 </head>
 
-<body class="gray-bg">
+<body class="signin hold-transition login-page">
 
-<div class="middle-box text-center loginscreen  animated fadeInDown">
-    <div style="padding: 100px 0px;">
-        <div>
-            <h1 class="logo-name">GS</h1>
+<div class="loginscreen animated fadeInDown signinpanel" id="loginBox" v-cloak>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="signin-info">
+                <div class="logopanel m-b">
+                    <h1>综合管理平台</h1>
+                </div>
+                <div class="m-b"></div>
+                <h4>欢迎使用 <strong>综合管理平台</strong></h4>
+                <ul class="m-b">
+                    <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 一个轻量级的Java快速开发平台，能快速开发项目</li>
+                    <!--<li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>-->
+                        <!--使用当下最流行的Spring+SpringMVC+Mybatis+Shiro+Ehcache技术-->
+                    <!--</li>-->
+                    <!--<li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 友好的代码结构及注释，便于阅读及二次开发</li>-->
+                    <!--<li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 完善的XSS防范及脚本过滤，彻底杜绝XSS攻击</li>-->
+                    <!--<li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 日志分级输出，便于分析日志</li>-->
+                    <!--<li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 前端使用Vue+iView，上手容易</li>-->
+                    <!--<li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 官方QQ群：<a-->
+                            <!--href="https://jq.qq.com/?_wv=1027&k=5eblbmW" target="_blank">66502035</a>(大平台系统开发)-->
+                    <!--</li>-->
+                    <!--<li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>-->
+                        <!--<a href="https://gitee.com/feixiangni/platform" target="_blank" style="color: white;">Git：https://gitee.com/feixiangni/platform</a>-->
+                    <!--</li>-->
+                </ul>
+            </div>
         </div>
-        <h3>欢迎使用 Guns</h3>
-        <br/>
-        <h4 style="color: red;">${tips!}</h4>
-        <form class="m-t" role="form" action="${ctxPath}/login" method="post">
-            <div class="form-group">
-                <input type="text" name="username" class="form-control" placeholder="用户名" required="">
-            </div>
-            <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="密码" required="">
-            </div>
-            @if(kaptcha.getKaptchaOnOff() == true){
-            <div class="form-group" style="float: left;">
-                <div class="col-sm-8" style="padding-left: 0px; padding-right: 0px;">
-                    <input class="form-control" type="text" name="kaptcha" placeholder="验证码" required="">
+        <div class="col-md-5">
+            <Card class="m-t text-center" style="background: rgba(109, 109, 109, 0.23);border: 0px solid #dddee1;">
+                <form class="m-t" role="form" action="${ctxPath}/login" method="post">
+                <p style="padding: 0 20px 20px 20px;">登录到综合管理平台</p>
+                <div class="form-group has-feedback">
+                    <input type="text" name="username" class="form-control" placeholder="用户名" required="">
                 </div>
-                <div class="col-sm-4" style="padding-left: 0px; padding-right: 0px;">
-                    <img src="${ctxPath}/kaptcha" id="kaptcha" width="100%" height="100%"/>
+                <div class="form-group has-feedback">
+                    <input type="password" name="password" class="form-control" placeholder="密码" required="">
                 </div>
-            </div>
-            @}
-            <div class="form-group" style="float: left;">
-                <div class="checkbox" style="text-align: left">
-                    <label>
-                        <input type="checkbox" name="remember" style="margin-top: 2px;">记住我
-                    </label>
+                @if(kaptcha.getKaptchaOnOff() == true){
+                <div class="form-group" style="float: left;">
+                    <div class="col-sm-8" style="padding-left: 0px; padding-right: 0px;">
+                        <input class="form-control" type="text" name="kaptcha" placeholder="验证码" required="">
+                    </div>
+                    <div class="col-sm-4" style="padding-left: 0px; padding-right: 0px;">
+                        <img src="${ctxPath}/kaptcha" id="kaptcha" width="100%" height="100%"/>
+                    </div>
                 </div>
-            </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
-            </p>
-        </form>
+                @}
+                <div class="form-group" style="float: left;">
+                    <div class="checkbox" style="text-align: left">
+                        <label>
+                            <input type="checkbox" name="remember" style="margin-top: 2px;">记住我
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+                </div>
+                </form>
+            </Card>
+        </div>
+    </div>
+    <div class="signup-footer">
+        <div class="pull-left">
+            2017~2017 &copy; 大平台 版权所有. All Rights Reserved.
+        </div>
     </div>
 </div>
 

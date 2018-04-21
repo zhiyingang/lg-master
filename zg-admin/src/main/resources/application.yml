@@ -28,7 +28,7 @@ beetl:
 ###################  spring配置  ###################
 spring:
   redis:
-    host: 10.70.94.107
+    host: localhost
     port: 6379
     password:
   profiles:
@@ -69,7 +69,7 @@ mybatis-plus:
     multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
 redis:
-  host: 10.70.94.107
+  host: localhost
   port: 6379
   maxTotal: 8
   maxIdl: 8
@@ -83,7 +83,7 @@ redis:
   MinEvictableIdleTimeMillis: 500
   database: 0
 redisson:
-  address: redis://10.70.94.107:6379
+  address: redis://localhost:6379
   model: single
 mq:
   namesrvaddr: 10.167.41.242:9876;10.167.41.243:9876
@@ -105,7 +105,7 @@ data:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://10.70.94.107:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://localhost:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
     password: root
     db-name: order2
@@ -115,12 +115,12 @@ spring:
 guns:
   flowable:
     datasource:
-      url: jdbc:mysql://10.70.94.107:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      url: jdbc:mysql://localhost:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
       username: root
       password: root
   muti-datasource:
     default-dataSource-name: dataSourceGuns #默认的数据源名称
-    url: jdbc:mysql://10.70.94.107:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://localhost:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
     password: root
 

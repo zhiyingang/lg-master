@@ -9,6 +9,22 @@
                 </form>
             </div>
             <ul class="nav navbar-top-links navbar-right">
+
+                <li class="dropdown">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle count-info">
+                        <i class="fa fa-bell"></i> <span class="label label-primary">2</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li><a href="mailbox.html" class="J_menuItem" data-index="0"><div>
+                            <i class="fa fa-envelope fa-fw"></i> 您有1条未读消息
+                    <span class="pull-right text-muted small">4分钟前</span></div></a></li>
+                        <li class="divider"></li> <li><a href="profile.html" class="J_menuItem" data-index="1"><div><i class="fa fa-qq fa-fw"></i> 1条新回复
+                    <span class="pull-right text-muted small">12分钟钱</span></div></a></li>
+                        <li class="divider"></li> <li><div class="text-center link-block">
+                        <a href="sys/generator/view" class="J_menuItem" data-index="2"><strong>查看所有 </strong>
+                            <i class="fa fa-angle-right"></i></a></div></li></ul>
+                </li>
+
                 <li class="dropdown profile-element">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                        <span class="text-muted text-xs block">
@@ -56,7 +72,8 @@
                 </li>
             </ul>
         </div>
-        <a href="logout" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+        <!--<a class="roll-nav roll-right J_tabRefresh"><i class="fa fa-refresh"></i> &nbsp;刷新</a>-->
+        <a class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 刷新</a>
     </div>
     <div class="row J_mainContent" id="content-main">
         <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="${ctxPath}/blackboard" frameborder="0" data-id="${ctxPath}/blackboard" seamless></iframe>
