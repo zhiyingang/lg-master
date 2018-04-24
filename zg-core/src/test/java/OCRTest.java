@@ -1,4 +1,5 @@
 import com.alibaba.fastjson.JSON;
+import com.baidu.aip.face.AipFace;
 import com.baidu.aip.ocr.AipOcr;
 import com.zyg.guns.ocr.dto.IdentityInfo;
 import com.zyg.guns.ocr.util.DateUtil;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -28,13 +30,19 @@ public class OCRTest extends TestCase {
 
     private AipOcr aipOcr;
 
+    private  AipFace aipFace;
+
     public void setUp(){
         aipOcr = new AipOcr(appId,appKey,secretKey);
         aipOcr.setConnectionTimeoutInMillis(6000);
+
+        aipFace = new AipFace(appId,appKey,secretKey);
+        aipFace.setConnectionTimeoutInMillis(6000);
     }
 
+    //身份证识别
     @Test
-    public void test() throws Exception{
+    public void testCard() throws Exception{
         logger.info("开始调用百度身份证识别接口... at {} ", DateUtil.formatNow());
         long start = System.currentTimeMillis();
 
@@ -54,4 +62,24 @@ public class OCRTest extends TestCase {
         System.out.println(JSON.toJSONString(identityInfo));
     }
 
+    //人脸对比
+    @Test
+    public void testFace()  throws Exception{
+        // 传入可选参数调用接口
+        HashMap<String, String> options = new HashMap<String, String>();
+        options.put("ext_fields", "qualities");
+        options.put("image_liveness", ",faceliveness");
+        options.put("types", "7,13");
+
+        //参数为本地图片路径列表
+        String path1 = "D:\\code\\111.jpg";
+        String path2 = "D:\\code\\333.jpg";
+        ArrayList<String> images = new ArrayList<String>();
+        images .add(path1);
+        images.add(path2);
+        System.out.println(".............");
+        JSONObject res = aipFace.match(images, options);
+        System.out.println(res);
+        System.out.println(".......3......");
+    }
 }
