@@ -110,6 +110,19 @@ public class HttpClientTemplate {
         return null;
     }
 
+
+    public JSONObject postForm(String url) throws IOException{
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        Response response = okHttpClient.newCall(request).execute();
+        if(response.isSuccessful()){
+            String responseBody = response.body().string();
+            return JSON.parseObject(responseBody);
+        }
+        return null;
+    }
+
     /**
      * 发送  x-www-form-urlencoded 请求
      * @param url
