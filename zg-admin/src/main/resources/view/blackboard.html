@@ -31,5 +31,74 @@
 
 		<!--</div>-->
 	<!--</div>-->
+
+	<div class="clear input-bar">
+		<input id="latlong" placeholder='经度与纬度之间用英文逗号","隔开 如:120.525434,25.256334'/>
+	</div>
+	<div class="map-wrap">
+		<input type="text" id="suggestId" name="address_detail" placeholder="输入合法城市名称和及景区名称可定位地图"/>
+	</div>
+	<div style="width:700px;height:550px;border:#ccc solid 1px;font-size:12px" id="map"></div>
 </div>
+
 @}
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		initMap();
+	})
+
+	function initMap(){
+		// 创建Map实例
+		var map = new BMap.Map("map");
+		//修改信息 强制重新请求刷新地图
+		// 初始化点坐标
+		var point = new BMap.Point(116.404, 39.915);
+		map.centerAndZoom(point, 15);
+		map.enableScrollWheelZoom();
+		//建立一个自动完成的对象
+		var ac = new BMap.Autocomplete(
+				{"input": "suggestId", "location": map});
+		var myValue;
+		//鼠标点击下拉列表后的事件
+		ac.addEventListener("onconfirm", function (e) {
+			var _value = e.item.value;
+
+			myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
+			$("#suggestId").val(myValue);
+			setPlace(map,myValue);
+		});
+		map.addEventListener("click", showInfo);
+	}
+
+	function setPlace(map,myValue) {
+		//清除地图上所有覆盖物
+		map.clearOverlays();
+
+		function myFun() {
+			//获取第一个智能搜索的结果
+			var userlocation = local.getResults().getPoi(0).point;
+			map.centerAndZoom(userlocation, 18);
+			//添加标注
+			map.addOverlay(new BMap.Marker(userlocation));
+		}
+
+		//智能搜索
+		var local = new BMap.LocalSearch(map, {
+			onSearchComplete: myFun
+		});
+		local.search(myValue);
+	}
+
+	function showInfo(e) {
+		var mylng = e.point.lng;
+		var mylat = e.point.lat;
+		var tempAddress = mylng + ',' + mylat;
+
+		$("#latlong").val(tempAddress);
+	}
+
+
+
+
+</script>

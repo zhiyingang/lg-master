@@ -19,7 +19,7 @@ import java.util.HashMap;
  * 百度文字识别服务，目前支持身份证识别、银行卡识别
  * Created by yangxin on 2017/8/11.
  */
-@Service
+//@Service
 public class BaiduOCRService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
