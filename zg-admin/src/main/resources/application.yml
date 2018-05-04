@@ -105,7 +105,7 @@ data:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://localhost:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://10.70.94.107:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
     password: root
     db-name: order2
@@ -115,12 +115,12 @@ spring:
 guns:
   flowable:
     datasource:
-      url: jdbc:mysql://localhost:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      url: jdbc:mysql://10.70.94.107:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
       username: root
       password: root
   muti-datasource:
     default-dataSource-name: dataSourceGuns #默认的数据源名称
-    url: jdbc:mysql://localhost:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://10.70.94.107:3306/order2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
     password: root
 
