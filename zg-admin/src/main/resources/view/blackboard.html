@@ -44,16 +44,34 @@
 @}
 
 <script type="text/javascript">
+	var map = new BMap.Map("map");
 	$(document).ready(function(){
 		initMap();
 	})
 
+
+
 	function initMap(){
 		// 创建Map实例
-		var map = new BMap.Map("map");
+
+		var geolocation = new BMap.Geolocation();
+//		var lng = 116.404;
+//		var lat = 39.915;
+		geolocation.getCurrentPosition(function (r) {
+			if (this.getStatus() == 0) {
+				//setCookie("localX", r.point.lng);
+				//setCookie("localY", r.point.lat);
+				lng = r.point.lng;
+				lat = r.point.lat;
+				Map(lng,lat);
+			}
+		});
+	}
+
+	function Map(lng,lat){
 		//修改信息 强制重新请求刷新地图
 		// 初始化点坐标
-		var point = new BMap.Point(116.404, 39.915);
+		var point = new BMap.Point(lng, lat);
 		map.centerAndZoom(point, 15);
 		map.enableScrollWheelZoom();
 		//建立一个自动完成的对象
@@ -96,6 +114,7 @@
 		var tempAddress = mylng + ',' + mylat;
 
 		$("#latlong").val(tempAddress);
+		Map(mylng,mylat);
 	}
 
 
